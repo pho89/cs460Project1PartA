@@ -119,6 +119,10 @@ public class Prog1A {
 						 */
 						dataStream.writeInt(1);
 						dataStream.writeInt(field.length());
+						System.out.println("field: " + j);
+						System.out.println(field);
+						System.out.println(field.length());
+						System.out.println("-------------------");
 						if(j == 4) {
         					if(compareDates(field,last) == true){
 	        					last = field;

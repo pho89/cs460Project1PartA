@@ -1,32 +1,37 @@
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.math.BigInteger;
 
 public class Prog1B {
 
-	public static void main(String[] args) {
-		RandomAccessFile dataStream = null;
+	public static void main(String[] args) throws FileNotFoundException {
 		File file = new File(args[0]);
+		byte[] part = null;
+		RandomAccessFile dataStream  = new RandomAccessFile(file, "r");
 		try {
-			dataStream = new RandomAccessFile(file, "r");
-			String text = "";
-			int a = dataStream.readInt();
-			if(a == 0) {
-				System.out.println(dataStream.readInt());
-			} else {
-				int length = dataStream.readInt();
-				byte[] line = new byte[length];
-				dataStream.readFully(line);
-				String name = new String(line);
-				System.out.println(name);
+			while(true) {
+				int a = dataStream.readInt();
+				if(a == 0) {
+					int num = dataStream.readInt();
+				} else {
+					System.out.println("a: " + String.format("%08X", a));
+					int length = dataStream.readInt();
+					System.out.println("length: " + String.format("%08X", length));
+					part = new byte[length];
+					dataStream.readFully(part);
+					String name = new String(part);
+					System.out.println("name: " +String.format("%x", new BigInteger(1, name.getBytes(/*YOUR_CHARSET?*/))));
+				}
+				
 			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
 
 }
