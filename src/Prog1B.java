@@ -10,20 +10,22 @@ public class Prog1B {
 	public static void main(String[] args) throws FileNotFoundException {
 		File file = new File(args[0]);
 		byte[] part = null;
+		int a = 0;
 		RandomAccessFile dataStream  = new RandomAccessFile(file, "r");
 		try {
 			while(true) {
-				int a = dataStream.readInt();
+				a = dataStream.readInt();
 				if(a == 0) {
 					int num = dataStream.readInt();
 				} else {
-					System.out.println("a: " + String.format("%08X", a));
+					//System.out.println("a: " + String.format("%08X", a));
 					int length = dataStream.readInt();
-					System.out.println("length: " + String.format("%08X", length));
+					//System.out.println("length: " + String.format("%08X", length));
 					part = new byte[length];
 					dataStream.readFully(part);
 					String name = new String(part);
-					System.out.println("name: " +String.format("%x", new BigInteger(1, name.getBytes(/*YOUR_CHARSET?*/))));
+					System.out.println(name);
+					//System.out.println("name: " +String.format("%x", new BigInteger(1, name.getBytes(/*YOUR_CHARSET?*/))));
 				}
 				
 			}

@@ -135,7 +135,6 @@ public class Prog1A {
         					dataStream.writeBytes(field);
         				}
 					}
-					dataStream.writeBytes("\0");
 				}
 			}
 			dataStream.close();
